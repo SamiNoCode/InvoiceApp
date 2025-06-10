@@ -1,6 +1,7 @@
 import { Test, TestingModule } from "@nestjs/testing";
 import { InvoiceService } from "../invoice.service";
 import { PrismaService } from "../../prisma/prisma.service";
+import { NotFoundException } from "@nestjs/common";
 
 describe("InvoiceService", () => {
   let service: InvoiceService;
@@ -79,11 +80,12 @@ describe("InvoiceService", () => {
       });
     });
 
-    it("should return null for non-existent invoice", async () => {
+    it("should throw NotFoundException for non-existent invoice", async () => {
       mockPrismaService.invoice.findUnique.mockResolvedValue(null);
 
-      const result = await service.findInvoiceById("2");
-      expect(result).toBeNull();
+      await expect(service.findInvoiceById("2")).rejects.toThrow(
+        new NotFoundException("Invoice with ID 2 not found")
+      );
     });
   });
 });

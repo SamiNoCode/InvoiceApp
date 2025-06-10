@@ -7,8 +7,8 @@ describe("InvoiceController", () => {
   let service: InvoiceService;
 
   const mockInvoiceService = {
-    findAll: jest.fn(),
-    findOne: jest.fn(),
+    findAllInvoices: jest.fn(),
+    findInvoiceById: jest.fn(),
   };
 
   beforeEach(async () => {
@@ -46,7 +46,7 @@ describe("InvoiceController", () => {
         },
       ];
 
-      mockInvoiceService.findAll.mockResolvedValue(expectedInvoices);
+      mockInvoiceService.findAllInvoices.mockResolvedValue(expectedInvoices);
 
       const result = await controller.findAll();
       expect(result).toEqual(expectedInvoices);
@@ -68,7 +68,7 @@ describe("InvoiceController", () => {
         updated_at: new Date(),
       };
 
-      mockInvoiceService.findOne.mockResolvedValue(expectedInvoice);
+      mockInvoiceService.findInvoiceById.mockResolvedValue(expectedInvoice);
 
       const result = await controller.findOne("1");
       expect(result).toEqual(expectedInvoice);
