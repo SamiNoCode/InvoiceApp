@@ -13,95 +13,32 @@ This is the backend server for the Altametrics Full Stack Project, built with Ne
 ## COMANDS
 
 cd Server
-npm install
 
 # Set up .env file
 
-# Create PostgreSQL database
-
-npm run migration:generate
-npm run migration:run
-npm run seed
-npm run start:dev
-
-1. Create a `.env` file in the root directory with the following variables:
-
-```env
-# Database Configuration
 DATABASE_URL="postgresql://postgres:postgres@localhost:5432/invoice_db"
-
-
-# JWT Configuration
 JWT_SECRET=your_jwt_secret_key
-```
 
-## Database Setup
-
-You can either use Docker or a local PostgreSQL installation:
-
-### Using Docker (Recommended)
-
-```bash
-# Start the PostgreSQL container
-docker-compose up -d
-```
-
-### Using Local PostgreSQL
-
-```bash
-psql -U postgres
-CREATE DATABASE invoice_db;
-```
-
-## Installation
-
-```bash
-# Install dependencies
 npm install
 
-# Generate Prisma client
+# Create PostgreSQL database
+
+Download Doker app
+Then Run this:
+docker-compose up -d
+
+# Generate and apply Prisma schema
+
 npx prisma generate
-```
-
-## Seeding the Database
-
-To populate the database with initial data:
-
-```bash
-# Run database migrations
 npx prisma migrate dev
 
-# Run database seeds
+# Seed the database
+
 npm run prisma:seed
-```
 
-This will create:
+# Start the development server
 
-- A default admin user (email: admin@example.com, password: admin123)
-- Sample invoices
-- Sample vendors
-- Sample expenses
-
-## Running the Application
-
-```bash
-# Development mode
 npm run start:dev
-
-# Production mode
-npm run build
-npm run start:prod
-
-# Watch mode
-npm run start
-```
-
-The server will start on `http://localhost:3000` by default.
-
-## API Documentation
-
-Once the server is running, you can access the API documentation at:
-`http://localhost:3000/api-docs`
 
 ## Available Scripts
 
